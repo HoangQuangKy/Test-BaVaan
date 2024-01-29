@@ -1,0 +1,31 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+p {
+    @apply leading-[1.8] text-white/60 font-light;
+}
+
+body {
+    @apply bg-[#21193E];
+}
+
+.h2 {
+    @apply text-[35px] leading-tight md:leading-[1.3] mb-4 font-semibold;
+}
+
+.h3 {
+    @apply text-[25px] leading-tight md:leading-[1.3] mb-4 font-semibold;
+}
+
+.input {
+    @apply h-[52px];
+}
+
+.btn {
+    @apply h-[52px];
+}
+
+.input {
+    @apply w-full h-[52px] rounded-lg pl-6;
+}
