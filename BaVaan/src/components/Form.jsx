@@ -16,8 +16,8 @@ function Form() {
     })
     const [cityChoose, setCity] = useState('')
     const [districtChoose, setDistrict] = useState('')
-    const [cityName, setCityName] = useState([]);
-    const [districtName, setDistrictName] = useState([]);
+    const [cityList, setCityList] = useState([]);
+    const [districtList, setDistrictList] = useState([]);
     const [selectedCity, setSelectedCity] = useState('');
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [error, setError] = useState({
@@ -32,7 +32,7 @@ function Form() {
         try {
             const response = await axios.get('https://vapi.vnappmob.com/api/province/');
             console.log(response);
-            setCityName(response.data.results)
+            setCityList(response.data.results)
         } catch (error) {
             console.error('Error fetching cities:', error);
         }
@@ -41,7 +41,7 @@ function Form() {
         if (selectedCity) {
             try {
                 const response = await axios.get(`https://vapi.vnappmob.com/api/province/district/${selectedCity}`);
-                setDistrictName(response.data.results)
+                setDistrictList(response.data.results)
             } catch (error) {
                 console.error('Error fetching districts:', error);
             }
@@ -50,8 +50,8 @@ function Form() {
 
     // function 
     const updateCityAndDistrictNames = () => {
-        const cityName1 = cityName.find(item => item.province_id === selectedCity);
-        const districtName1 = districtName.find(item => item.district_id === selectedDistrict);
+        const cityName1 = cityList.find(item => item.province_id === selectedCity);
+        const districtName1 = districtList.find(item => item.district_id === selectedDistrict);
         setCity(cityName1?.province_name || "");
         setDistrict(districtName1?.district_name || "");
     };
@@ -112,7 +112,7 @@ function Form() {
     }, [formData]);
     return (
         <div className='flex flex-col w-full items-center justify-center mt-2'>
-            <div className='h3 text-red-300'>Thông tin của bạn</div>
+            <div className='h3-s md:h3 text-red-300'>Thông tin của bạn</div>
             <motion.form
                 variants={fadeIn('up', 0.6)}
                 initial='hidden'
@@ -122,8 +122,8 @@ function Form() {
                 className='flex flex-col w-full items-center justify-center'
                 action="">
                 <div className='flex w-full flex-col items-center justify-center mb-4'>
-                    <div className='flex w-[700px] flex-1 items-center justify-center'>
-                        <label className='text-[20px] w-[200px] text-white font-semibold'>Số điện thoại:</label>
+                    <div className='flex lg:w-[750px] w-full mx-auto flex-1 items-center justify-center'>
+                        <label className='text-[13px] md:text-[20px] md:w-[125px] mr-2 text-white font-semibold'>Số điện thoại:</label>
                         <input
                             type="text"
                             name='phone'
@@ -137,8 +137,8 @@ function Form() {
                 </div>
 
                 <div className='flex w-full flex-col items-center justify-center mb-4'>
-                    <div className='flex w-[700px] flex-1 items-center justify-center'>
-                        <label className='text-[20px] w-[200px] text-white font-semibold'>Địa chỉ email:</label>
+                    <div className='flex lg:w-[750px] w-full mx-auto flex-1 items-center justify-center'>
+                        <label className='text-[13px] md:text-[20px] md:w-[125px] mr-2 text-white font-semibold'>Địa chỉ email:</label>
                         <input
                             type="text"
                             name='email'
@@ -150,8 +150,8 @@ function Form() {
                 </div>
 
                 <div className='flex w-full flex-col items-center justify-center mb-4'>
-                    <div className='flex w-[700px] flex-1 items-center justify-center'>
-                        <label className='text-[20px] w-[200px] text-white font-semibold'>Tỉnh/Thành phố:</label>
+                    <div className='flex lg:w-[750px] w-full mx-auto flex-1 items-center justify-center'>
+                        <label className='text-[13px] md:text-[20px] md:w-[125px] mr-2 text-white font-semibold'>Tỉnh/Thành phố:</label>
                         <select
                             onChange={(e) => setSelectedCity(e.target.value)}
                             value={selectedCity}
@@ -159,7 +159,7 @@ function Form() {
                             className='input'
                             id="">
                             <option value="" selected disabled hidden>Chọn Tỉnh/Thành phố</option>
-                            {cityName.map((city) => {
+                            {cityList.map((city) => {
                                 return (
                                     <option
                                         value={city.province_id}
@@ -175,8 +175,8 @@ function Form() {
                 </div>
 
                 <div className='flex w-full flex-col items-center justify-center mb-4'>
-                    <div className='flex w-[700px] flex-1 items-center justify-center'>
-                        <label className='text-[20px] w-[200px] text-white font-semibold'>Quận/Huyện:</label>
+                    <div className='flex lg:w-[750px] w-full items-center justify-center'>
+                        <label className='text-[14px] md:text-[20px] md:w-[125px] mr-2 text-white font-semibold'>Quận/Huyện:</label>
                         <select
                             onChange={(e) => setSelectedDistrict(e.target.value)}
                             value={selectedDistrict}
@@ -184,7 +184,7 @@ function Form() {
                             className='input'
                             id="">
                             <option value="" selected disabled hidden>Chọn Quận/Huyện</option>
-                            {districtName.map((district) => {
+                            {districtList.map((district) => {
                                 return (
                                     <option
                                         value={district.district_id}
@@ -199,7 +199,7 @@ function Form() {
                     {error.district && <div className='text-red-500 mt-2'>{error.district}</div>}
                 </div>
 
-                <button className='btn rounded-full border border-white/50 max-w-[170px] px-8 transition-all duration-300 flex items-center justify-center overflow-hidden hover:border-red-300 group'>
+                <button className='btn rounded-full border border-white/50 max-w-[170px] px-8 transition-all duration-300 flex items-center justify-center overflow-hidden hover:border-red-300 group mb-5'>
                     <span className='group-hover:-translate-y-[120%] text-white group-hover:opacity-0 transition-all duration-500'>
                         Submit
                     </span>
@@ -209,7 +209,7 @@ function Form() {
 
             {formData.city && formData.district && (
                 <div>
-                    <div className='h3 text-red-300'>Cảm ơn anh/chị, dưới đây sẽ là thông tin của anh chị:</div>
+                    <div className='h3-s md:h3 text-red-300'>Cảm ơn anh/chị, dưới đây sẽ là thông tin của anh chị:</div>
                     {Object.keys(formData).map((key, index) => (
                         <div key={index} className='flex flex-col'>
                             <div className='text-[20px] text-white'>{`${key}: ${formData[key]}`}</div>

@@ -11,7 +11,7 @@ const Introduction = () => {
                     initial='hidden'
                     animate='show'
                     exit='hidden'
-                    className='h2'>
+                    className='h3 md:h2'>
                     Xin kính chào quý công ty{' '}
                     <motion.span
                         variants={fadeIn('up', 0.6)}
@@ -46,7 +46,7 @@ const Introduction = () => {
                         </motion.span>
                     </span>
                 </motion.p>
-                <p className='h2'>
+                <p className='h3 md:h2'>
                     Dưới đây là form thông tin , vui lòng điền một vài thông tin theo form dưới đây :
                 </p>
             </div>
