@@ -7,7 +7,7 @@ import axios from 'axios';
 function Form() {
 
     // Declare variable
-    const phoneRegex = /^\d+$/;
+    const phoneRegex = /^0\d{9,10}$/;
     const [formData, setFormData] = useState({
         phone: '',
         email: '',
