@@ -12,7 +12,7 @@ const Introduction = () => {
                     animate='show'
                     exit='hidden'
                     className='h3 md:h2'>
-                    Xin kính chào quý công ty{' '}
+                    Hello World{' '}
                     <motion.span
                         variants={fadeIn('up', 0.6)}
                         initial='hidden'
@@ -21,9 +21,9 @@ const Introduction = () => {
                         className='text-red-300'
 
                     >
-                        BAVAAN
+                        World
                     </motion.span>
-                    , tôi là{' '}
+                    , My name is{' '}
                     <motion.span
                         variants={fadeIn('down', 0.8)}
                         initial='hidden'
