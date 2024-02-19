@@ -31,7 +31,6 @@ function Form() {
     const fetchCities = async () => {
         try {
             const response = await axios.get('https://vapi.vnappmob.com/api/province/');
-            console.log(response);
             setCityList(response.data.results)
         } catch (error) {
             console.error('Error fetching cities:', error);
